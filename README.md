@@ -1,8 +1,12 @@
 # Javascipt-Dynamic-Elements-and-Events
 
-## How To Run Apps
+## How To Install
 1. client : `cd client && npm install`
 2. server : `cd server && npm install`
+
+## How To Run App
+1. client : `gulp`
+2. server : `npm start`
 
 ## Dependencies
 1. express framework
