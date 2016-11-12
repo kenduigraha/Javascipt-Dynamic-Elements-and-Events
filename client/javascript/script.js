@@ -2,8 +2,11 @@ $(document).ready(() => {
   $('#btn_update_todo').hide()
   submitNewTodo()
   showAllTodos()
-
 })
+
+let submitDoneButton = (id) => {
+  console.log(id)
+}
 
 let submitNewTodo = () => {
   $('#btn_add_todo').on('click', (e) => {
@@ -22,8 +25,10 @@ let submitNewTodo = () => {
         let new_HTML = `
         <tr id=${new_todo._id}>
           <td>
-            <input type="checkbox" id="check_status_${new_todo._id}">
             ${new_todo.content}
+          </td>
+          <td>
+            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${new_todo._id}')">Done</button>
           </td>
           <td>
             <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_todo._id}')">Edit</button>
@@ -49,9 +54,11 @@ let showAllTodos = () => {
       for(var i = 0; i < all_todos.length; i++){
         all_todos_HTML += `
         <tr id=${all_todos[i]._id}>
-          <td>
-            <input type="checkbox" id="check_status_${all_todos[i]._id}">
+          <td id="test">
             ${all_todos[i].content}
+          </td>
+          <td>
+            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${all_todos[i]._id}')">Done</button>
           </td>
           <td>
             <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${all_todos[i]._id}')">Edit</button>
@@ -108,8 +115,10 @@ let submitUpdateButton = () => {
         let replace_row = `
         <tr id=${new_edited_todo._id}>
           <td>
-            <input type="checkbox" id="check_status_${new_edited_todo._id}">
             ${new_edited_todo.content}
+          </td>
+          <td>
+            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${new_edited_todo._id}')">Done</button>
           </td>
           <td>
             <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_edited_todo._id}')">Edit</button>
