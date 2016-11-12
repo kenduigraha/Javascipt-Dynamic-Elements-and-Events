@@ -22,7 +22,10 @@ let submitNewTodo = () => {
         console.log(new_todo);
         let new_HTML = `
         <tr id=${new_todo._id}>
-          <td>${new_todo.content}</td>
+          <td>
+            <input type="checkbox" id="check_status">
+            ${new_todo.content}
+          </td>
           <td>
             <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_todo._id}')">Edit</button>
             <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_todo._id}')">Delete</button>
@@ -45,12 +48,16 @@ let showAllTodos = () => {
       console.log(all_todos);
       let all_todos_HTML = ''
       for(var i = 0; i < all_todos.length; i++){
-        all_todos_HTML += `<tr id=${all_todos[i]._id}>
-        <td>${all_todos[i].content}</td>
-        <td>
-          <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${all_todos[i]._id}')">Edit</button>
-          <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${all_todos[i]._id}')">Delete</button>
-        </td>
+        all_todos_HTML += `
+        <tr id=${all_todos[i]._id}>
+          <td>
+            <input type="checkbox" id="check_status">
+            ${all_todos[i].content}
+          </td>
+          <td>
+            <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${all_todos[i]._id}')">Edit</button>
+            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${all_todos[i]._id}')">Delete</button>
+          </td>
         </tr>`
       }
       $('#body_table_todos').append(all_todos_HTML)
