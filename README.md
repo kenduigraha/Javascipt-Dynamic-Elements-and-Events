@@ -14,6 +14,7 @@
 7. mongodb
 8. mongoose
 9. nodemon
+10. dotenv
 
 
 ## Database's Structure
