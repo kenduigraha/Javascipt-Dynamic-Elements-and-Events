@@ -28,7 +28,7 @@ let submitNewTodo = () => {
             <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_todo._id}')">Delete</button>
           </td>
         </tr>`
-      $('#body_table_todos').append(new_HTML)
+      $('#body_table_todos').prepend(new_HTML)
       }
     })
     $('#form_new_todo')[0].reset()
