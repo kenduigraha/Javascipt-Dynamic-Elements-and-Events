@@ -1,9 +1,21 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const controller = require('../controllers/todos')
+
+/* GET All Todos. */
+router.get('/', controller.allTodos)
+
+/* Process One Todos. */
+router.post('/', controller.addTodo);
+
+/* Process Mark 1 Todo as Done */
+router.post('/:id', controller.markTodo);
+
+/* Process Edit Todos. */
+router.put('/:id', controller.editTodo);
+
+/* Process Delete Todos. */
+router.delete('/:id', controller.deleteTodo);
 
 module.exports = router;
