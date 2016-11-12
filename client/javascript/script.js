@@ -2,6 +2,7 @@ $(document).ready(() => {
   $('#btn_update_todo').hide()
   submitNewTodo()
   showAllTodos()
+
 })
 
 let submitNewTodo = () => {
@@ -10,8 +11,6 @@ let submitNewTodo = () => {
     let data_todo = {
       content : $('#content').val()
     }
-    // console.log(data_todo);
-
     $.ajax({
       url         : 'http://localhost:3000/api/todos',
       type        : 'POST',
@@ -23,7 +22,7 @@ let submitNewTodo = () => {
         let new_HTML = `
         <tr id=${new_todo._id}>
           <td>
-            <input type="checkbox" id="check_status">
+            <input type="checkbox" id="check_status_${new_todo._id}">
             ${new_todo.content}
           </td>
           <td>
@@ -51,7 +50,7 @@ let showAllTodos = () => {
         all_todos_HTML += `
         <tr id=${all_todos[i]._id}>
           <td>
-            <input type="checkbox" id="check_status">
+            <input type="checkbox" id="check_status_${all_todos[i]._id}">
             ${all_todos[i].content}
           </td>
           <td>
@@ -108,11 +107,14 @@ let submitUpdateButton = () => {
         console.log(new_edited_todo)
         let replace_row = `
         <tr id=${new_edited_todo._id}>
-        <td>${new_edited_todo.content}</td>
-        <td>
-          <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_edited_todo._id}')">Edit</button>
-          <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo._id}')">Delete</button>
-        </td>
+          <td>
+            <input type="checkbox" id="check_status_${new_edited_todo._id}">
+            ${new_edited_todo.content}
+          </td>
+          <td>
+            <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_edited_todo._id}')">Edit</button>
+            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo._id}')">Delete</button>
+          </td>
         </tr>
         `
         $(`#${new_edited_todo._id}`).replaceWith(replace_row)
