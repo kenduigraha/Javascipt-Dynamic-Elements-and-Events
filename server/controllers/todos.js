@@ -52,7 +52,7 @@ let markTodo = (req, res) => {
     _id: req.params.id
   }, {
     status : true
-  } {
+  }, {
     new : true
   }, (err, marked_Todo) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
