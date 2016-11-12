@@ -5,7 +5,20 @@ $(document).ready(() => {
 })
 
 let submitDoneButton = (id) => {
-  console.log(id)
+  $.post({
+    url: 'http://localhost:3000/api/todos/'+id,
+    success: function(data){
+      console.log(data);
+      $(`#mark_todo${data._id}`).replaceWith(`
+        <button type="button" class="btn btn-success" id="mark_todo${data._id}" onclick="submitDoneButton('${data._id}')" disabled>Done</button>
+        `)
+
+        $(`#edit_todo${data._id}`).replaceWith(`
+          <button type="button" class="btn btn-warning" id="edit_todo${data._id}" onclick="submitEditButton('${data._id}')" disabled>Edit</button>
+          `)
+    }
+
+  })
 }
 
 let submitNewTodo = () => {
@@ -28,10 +41,12 @@ let submitNewTodo = () => {
             ${new_todo.content}
           </td>
           <td>
-            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${new_todo._id}')">Done</button>
+            <button type="button" class="btn btn-success" id="mark_todo${new_todo._id}" onclick="submitDoneButton('${new_todo._id}')" ${new_todo.status === false ? '' : 'disabled'}>
+              ${new_todo.status === false ? 'Check' : 'Done'}
+            </button>
           </td>
           <td>
-            <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_todo._id}')">Edit</button>
+            <button type="button" class="btn btn-warning" id="edit_todo${new_todo._id}" onclick="submitEditButton('${new_todo._id}')" ${new_todo.status === false ? '' : 'disabled'}>Edit</button>
             <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_todo._id}')">Delete</button>
           </td>
         </tr>`
@@ -58,10 +73,12 @@ let showAllTodos = () => {
             ${all_todos[i].content}
           </td>
           <td>
-            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${all_todos[i]._id}')">Done</button>
+            <button type="button" class="btn btn-success" id="mark_todo${all_todos[i]._id}" onclick="submitDoneButton('${all_todos[i]._id}')" ${all_todos[i].status === false ? '' : 'disabled'}>
+              ${all_todos[i].status === false ? 'Check' : 'Done'}
+            </button>
           </td>
           <td>
-            <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${all_todos[i]._id}')">Edit</button>
+            <button type="button" class="btn btn-warning" id="edit_todo${all_todos[i]._id}" onclick="submitEditButton('${all_todos[i]._id}')" ${all_todos[i].status === false ? '' : 'disabled'}>Edit</button>
             <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${all_todos[i]._id}')">Delete</button>
           </td>
         </tr>`
@@ -118,11 +135,13 @@ let submitUpdateButton = () => {
             ${new_edited_todo.content}
           </td>
           <td>
-            <button type="button" class="btn btn-success" id="mark_todo" onclick="submitDoneButton('${new_edited_todo._id}')">Done</button>
+            <button type="button" class="btn btn-success" id="mark_todo${all_todos[i]._id}" onclick="submitDoneButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>
+              ${new_edited_todo.status === false ? 'Check' : 'Done'}
+            </button>
           </td>
           <td>
-            <button type="button" class="btn btn-warning" id="edit_todo" onclick="submitEditButton('${new_edited_todo._id}')">Edit</button>
-            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo._id}')">Delete</button>
+            <button type="button" class="btn btn-warning" id="edit_todo${all_todos[i]._id}" onclick="submitEditButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>Edit</button>
+            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo[i]._id}')">Delete</button>
           </td>
         </tr>
         `
