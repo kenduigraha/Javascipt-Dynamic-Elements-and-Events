@@ -27,11 +27,11 @@ Default development host and port : http://localhost:3000
 
 | Routes | HTTP | Action |
 |--------|------|--------|
-| /api/memos | GET | all memos |
-| /api/memos | POST | process new memo |
-| /api/memos/:id | POST | process mark status as done |
-| /api/memos/:id | PUT | process edit memo |
-| /api/memos/:id | DELETE | process delete memo |
+| /api/todos | GET | all todos |
+| /api/todos | POST | process new todo |
+| /api/todos/:id | POST | process mark todo status as done |
+| /api/todos/:id | PUT | process edit todo |
+| /api/todos/:id | DELETE | process delete todo |
 
 ## package.json (server)
 
