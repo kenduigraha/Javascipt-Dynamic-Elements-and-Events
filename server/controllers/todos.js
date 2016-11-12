@@ -9,7 +9,7 @@ const Todo = require('../models/todos')
   *
   * @apiSuccess show all Todo's content {String}
 */
-let alltodos = (req, res) => {
+let allTodos = (req, res) => {
   Todo.find({}, (err, all_todos) => {
     if(err) res.status(400).json({'error': 'Error: ${err}'})
     if(!all_todos) res.status(404).json({'message': 'Failed to get all todos'})
@@ -103,7 +103,7 @@ let deleteTodo = (req, res) => {
 }
 
 module.exports = {
-  alltodos  : alltodos,
+  allTodos  : allTodos,
   addTodo  : addTodo,
   markTodo : markTodo,
   editTodo  : editTodo,
