@@ -15,7 +15,7 @@ let allTodos = (req, res) => {
     if(!all_todos) res.status(404).json({'message': 'Failed to get all todos'})
 
     res.status(200).json(all_todos)
-  })
+  }).sort({_id: -1})
 }
 
 /*
