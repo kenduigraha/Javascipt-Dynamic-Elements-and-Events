@@ -1,8 +1,8 @@
 # Javascipt-Dynamic-Elements-and-Events
 
 ## How To Install
-1. client : `cd client && npm install`
-2. server : `cd server && npm install`
+1. client : `cd client && npm install && bower install && gulp`
+2. server : `cd server && npm install && npm start`
 
 ## How To Run App
 1. client : `gulp`

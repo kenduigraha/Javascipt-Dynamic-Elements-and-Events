@@ -1,3 +1,4 @@
 .DS_module
 node_modules
 .env
+lib/

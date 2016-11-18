@@ -135,16 +135,17 @@ let submitUpdateButton = () => {
             ${new_edited_todo.content}
           </td>
           <td>
-            <button type="button" class="btn btn-success" id="mark_todo${all_todos[i]._id}" onclick="submitDoneButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>
+            <button type="button" class="btn btn-success" id="mark_todo${new_edited_todo._id}" onclick="submitDoneButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>
               ${new_edited_todo.status === false ? 'Check' : 'Done'}
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-warning" id="edit_todo${all_todos[i]._id}" onclick="submitEditButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>Edit</button>
-            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo[i]._id}')">Delete</button>
+            <button type="button" class="btn btn-warning" id="edit_todo${new_edited_todo._id}" onclick="submitEditButton('${new_edited_todo._id}')" ${new_edited_todo.status === false ? '' : 'disabled'}>Edit</button>
+            <button type="button" class="btn btn-danger" id="delete_todo" onclick="submitDeleteButton('${new_edited_todo._id}')">Delete</button>
           </td>
         </tr>
         `
+
         $(`#${new_edited_todo._id}`).replaceWith(replace_row)
         $('#form_new_todo')[0].reset()
         $('#btn_update_todo').hide()
